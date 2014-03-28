@@ -15,7 +15,6 @@ public class SupportSystem
 {
     private InputReader reader;
     private Responder responder;
-    
     /**
      * Creates a technical support system.
      */
@@ -38,21 +37,21 @@ public class SupportSystem
 
         while(!finished) {
             String input = reader.getInput();
-
+            
             if(input.toLowerCase().trim().equals("bye")) {
                 finished = true;
             }
             else {
-                String response = responder.generateResponse();
+                String response = responder.generateResponse(input);
                 System.out.println(response);
             }
         }
         printGoodbye();
     }
 
+    
     /**
-     * Print a welcome message to the screen.
-     */
+ n     */
     private void printWelcome()
     {
         System.out.println("Welcome to the DodgySoft Technical Support System.");
