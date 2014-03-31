@@ -43,8 +43,15 @@ public class Responder
     {
         String respuesta = null;
         Iterator<String> iterator = specificResponse.iterator();
-        String word = iterator.next();
-        respuesta = answers.get(word);
+        boolean searching = true;
+        
+        while(iterator.hasNext() && searching){
+            respuesta = answers.get(iterator.next());
+            if(respuesta != null){
+                searching = false;
+            }
+            
+        }
 
         if(respuesta == null){
             int numeroAleatorio = aleatorio.nextInt(respuestas.size());
