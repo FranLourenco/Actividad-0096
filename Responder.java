@@ -14,7 +14,9 @@ public class Responder
 {
     Random aleatorio;
     ArrayList <String> respuestas;
-    private HashMap <String, String> answers;
+    private HashMap <HashSet<String>, String> answers;
+    private HashSet <String> coincidence2;
+    private HashSet <String> coincidence;
     /**
      * Construct a Responder - nothing to do
      */
@@ -23,10 +25,21 @@ public class Responder
         aleatorio = new Random();
         respuestas = new ArrayList<>();
         answers = new HashMap<>();
+        coincidence = new HashSet<>();
+        coincidence2 = new HashSet<>();
+        
+        
+        coincidence.add("crash");
+        coincidence.add("linux");
+        coincidence.add("problem");
+        
+        coincidence2.add("app");
+        coincidence2.add("free");
+        coincidence2.add("not");
+        
+        answers.put(coincidence, "the application does not allow linux");
 
-        answers.put("Ayuda", "Porfavor, vaya al menú de preguntas frecuentes");
-        answers.put("Salir", "Para salir introduzca la palabra -bye-");
-        answers.put("Linux", "Este programa no soporta ese sistema operativo");
+        answers.put(coincidence2, "This application is not free");
 
         respuestas.add("El equipo no funciona");
         respuestas.add("Pruebe a explicarme el problema de nuevo");
@@ -42,16 +55,7 @@ public class Responder
     public String generateResponse(HashSet<String> specificResponse)
     {
         String respuesta = null;
-        Iterator<String> iterator = specificResponse.iterator();
-        boolean searching = true;
-        
-        while(iterator.hasNext() && searching){
-            respuesta = answers.get(iterator.next());
-            if(respuesta != null){
-                searching = false;
-            }
-            
-        }
+        respuesta = answers.get(specificResponse);
 
         if(respuesta == null){
             int numeroAleatorio = aleatorio.nextInt(respuestas.size());
