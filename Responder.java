@@ -27,16 +27,15 @@ public class Responder
         answers = new HashMap<>();
         coincidence = new HashSet<>();
         coincidence2 = new HashSet<>();
-        
-        
+
         coincidence.add("crash");
         coincidence.add("linux");
         coincidence.add("problem");
-        
+
         coincidence2.add("app");
         coincidence2.add("free");
         coincidence2.add("not");
-        
+
         answers.put(coincidence, "the application does not allow linux");
 
         answers.put(coincidence2, "This application is not free");
@@ -57,11 +56,12 @@ public class Responder
         String respuesta = null;
         respuesta = answers.get(specificResponse);
 
-        if(respuesta == null){
+        if(respuestas.size() > 0){
             int numeroAleatorio = aleatorio.nextInt(respuestas.size());
-            respuesta = respuestas.get(numeroAleatorio);
+            respuesta = respuestas.remove(numeroAleatorio);
+        }else{
+            respuesta = "No se ha entendido la frase del usuario.";
         }
         return respuesta;
     }
-
 }
